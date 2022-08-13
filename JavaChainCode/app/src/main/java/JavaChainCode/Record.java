@@ -63,10 +63,6 @@ public final class Record {
         return DateTime;
     }
 
-    public String getFacilityName() {
-        return FacilityName;
-    }
-
     public String getPatientID() {
         return PatientID;
     }
@@ -84,8 +80,7 @@ public final class Record {
             @JsonProperty("Diagnosis") final String Diagnosis,
             @JsonProperty("Prescriptions") final String Prescriptions,
             @JsonProperty("DoctorName") final String DoctorName,
-            @JsonProperty("DateTime") final String DateTime,
-            @JsonProperty("FacilityName") final String FacilityName) {
+            @JsonProperty("DateTime") final String DateTime,) {
         this.RecordID = RecordID;
         this.Title = Title;
         this.PatientID = PatientID;
@@ -94,7 +89,6 @@ public final class Record {
         this.Prescriptions = Prescriptions;
         this.DoctorName = DoctorName;
         this.DateTime = DateTime ;
-        this.FacilityName = FacilityName ;
     }
 
     @Override
@@ -112,12 +106,12 @@ public final class Record {
         return Objects.deepEquals(
                 new String[] {getRecordID(), getTitle(), getPatientID(), getPatientName(), getDiagnosis(), getPrescriptions(),getDoctorName(),getDateTime(), getFacilityName()},
                 new String[] {other.getRecordID(), other.getTitle(), other.getPatientID(), other.getPatientName(), other.getDiagnosis(), 
-                    other.getPrescriptions(),other.getDoctorName(),other.getDateTime(), other.getFacilityName()});
+                    other.getPrescriptions(),other.getDoctorName(),other.getDateTime()});
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRecordID(), getTitle(), getPatientID(), getPatientName(), getDiagnosis(), getPrescriptions(),getDoctorName(),getDateTime(), getFacilityName());
+        return Objects.hash(getRecordID(), getTitle(), getPatientID(), getPatientName(), getDiagnosis(), getPrescriptions(),getDoctorName(),getDateTime());
     }
 
     @Override
@@ -131,7 +125,6 @@ public final class Record {
                 + ", Prescriptions=" + Prescriptions
                 + ", Doctorname=" + DoctorName
                 + ", DateTime=" + DateTime
-                + ", FacilityName=" + FacilityName
                 + "]";
     }
 }
