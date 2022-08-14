@@ -1,6 +1,6 @@
 
 
-package JavaChainCode;
+package BBMRMSChaincode;
 
 import java.util.Objects;
 

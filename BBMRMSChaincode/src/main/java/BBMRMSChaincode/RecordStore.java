@@ -1,5 +1,5 @@
 
-package JavaChainCode;
+package BBMRMSChaincode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 import com.owlike.genson.Genson;
 
 @Contract(
-        name = "RecordStore",
+        name = "basic",
         info = @Info(
                 title = "BBMRMS",
                 description = "Chaincode to Store Medical Record",
@@ -72,6 +72,17 @@ public final class RecordStore implements ContractInterface {
                 "DoctorName3",
                 "Date_Time3",
                 "Test_Lab_Result3");
+        CreateRecord(ctx, 
+                "Record4", 
+                "PatientName4",
+                "IC_Passport4",
+                "Title4",
+                "Diagnosis4",
+                "Treatment4",
+                "Prescriptions4",
+                "DoctorName4",
+                "Date_Time4",
+                "Test_Lab_Result4");
     }
 
     //Create New Record
@@ -151,7 +162,6 @@ public final class RecordStore implements ContractInterface {
 
         return (RecordJSON != null && !RecordJSON.isEmpty());
     }
-
 
     //Get all record
     @Transaction(intent = Transaction.TYPE.EVALUATE)

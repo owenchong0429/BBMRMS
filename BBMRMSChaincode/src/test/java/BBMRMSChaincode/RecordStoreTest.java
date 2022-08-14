@@ -1,5 +1,5 @@
 
-package JavaChainCode;
+package BBMRMSChaincode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.ThrowableAssert.catchThrowable;
@@ -61,7 +61,7 @@ public final class RecordStoreTest {
             RecordList = new ArrayList<KeyValue>();
 
             RecordList.add(new MockKeyValue("Record1",
-                    "{ \"RecordID\": \"MockRecord1\", "
+                    "{ \"RecordID\": \"Record1\", "
                             + "\"PatientName\": \"MockPatientName1\", "
                             + "\"IC_Passport\": \"MockIC_Passport1\", "
                             + "\"Title\": \"MockTitle1\", "
@@ -73,7 +73,7 @@ public final class RecordStoreTest {
                             + "\"Test_Lab_Result\": \"MockTest_Lab_Result1\"}"));
             
             RecordList.add(new MockKeyValue("Record2",
-                    "{ \"RecordID\": \"MockRecord2\", "
+                    "{ \"RecordID\": \"Record2\", "
                             + "\"PatientName\": \"MockPatientName2\", "
                             + "\"IC_Passport\": \"MockIC_Passport2\", "
                             + "\"Title\": \"MockTitle2\", "
@@ -85,7 +85,7 @@ public final class RecordStoreTest {
                             + "\"Test_Lab_Result\": \"MockTest_Lab_Result2\"}"));
             
             RecordList.add(new MockKeyValue("Record3",
-                    "{ \"RecordID\": \"MockRecord3\", "
+                    "{ \"RecordID\": \"Record3\", "
                             + "\"PatientName\": \"MockPatientName3\", "
                             + "\"IC_Passport\": \"MockIC_Passport3\", "
                             + "\"Title\": \"MockTitle3\", "
@@ -136,8 +136,7 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("Record1",
-                    "{ \"RecordID\": \"MockRecord1\", "
+                    .thenReturn("{ \"RecordID\": \"Record1\", "
                             + "\"PatientName\": \"MockPatientName1\", "
                             + "\"IC_Passport\": \"MockIC_Passport1\", "
                             + "\"Title\": \"MockTitle1\", "
@@ -151,7 +150,7 @@ public final class RecordStoreTest {
             Record Record = contract.ReadRecord(ctx, "Record1");
 
             assertThat(Record).isEqualTo(new Record(
-                    "MockRecord1", 
+                    "Record1", 
                     "MockPatientName1",
                     "MockIC_Passport1",
                     "MockTitle1", 
@@ -192,7 +191,7 @@ public final class RecordStoreTest {
 
         InOrder inOrder = inOrder(stub);
         inOrder.verify(stub).putStringState("Record1",
-                    "{ \"RecordID\": \"MockRecord1\", "
+                    "{ \"RecordID\": \"Record1\", "
                             + "\"PatientName\": \"MockPatientName1\", "
                             + "\"IC_Passport\": \"MockIC_Passport1\", "
                             + "\"Title\": \"MockTitle1\", "
@@ -204,7 +203,7 @@ public final class RecordStoreTest {
                             + "\"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
         
         inOrder.verify(stub).putStringState("Record2",
-                    "{ \"RecordID\": \"MockRecord2\", "
+                    "{ \"RecordID\": \"Record2\", "
                             + "\"PatientName\": \"MockPatientName2\", "
                             + "\"IC_Passport\": \"MockIC_Passport2\", "
                             + "\"Title\": \"MockTitle2\", "
@@ -216,7 +215,7 @@ public final class RecordStoreTest {
                             + "\"Test_Lab_Result\": \"MockTest_Lab_Result2\"}");
         
         inOrder.verify(stub).putStringState("Record3",
-                    "{ \"RecordID\": \"MockRecord3\", "
+                    "{ \"RecordID\": \"Record3\", "
                             + "\"PatientName\": \"MockPatientName3\", "
                             + "\"IC_Passport\": \"MockIC_Passport3\", "
                             + "\"Title\": \"MockTitle3\", "
@@ -239,8 +238,8 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("Record1",
-                    "{ \"PatientName\": \"MockPatientName1\", "
+                    .thenReturn("{ \"RecordID\": \"Record1\", "
+                            + "\"PatientName\": \"MockPatientName1\", "
                             + "\"IC_Passport\": \"MockIC_Passport1\", "
                             + "\"Title\": \"MockTitle1\", "
                             + "\"Diagnosis\": \"MockDiagnosis1\", "
@@ -344,8 +343,7 @@ public final class RecordStoreTest {
                             + "\"Prescriptions\": \"MockPrescriptions3\", "
                             + "\"DoctorName\": \"MockDoctorName3\", "
                             + "\"Date_Time\": \"MockDate_Time3\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result3\"}"
-                            + "]");
+                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result3\"}]");
 
     }
 
@@ -403,8 +401,7 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("Record1",
-                    "{ \"RecordID\": \"Record1\", "
+                    .thenReturn("{ \"RecordID\": \"Record1\", "
                             + "\"PatientName\": \"MockPatientName1\", "
                             + "\"IC_Passport\": \"MockIC_Passport1\", "
                             + "\"Title\": \"MockTitle1\", "
@@ -440,7 +437,7 @@ public final class RecordStoreTest {
                     "MockTest_Lab_Result1"));
         }
 
-       // @Test
+//        @Test
 //        public void whenRecordDoesNotExist() {
 //            RecordStore contract = new RecordStore();
 //            Context ctx = mock(Context.class);

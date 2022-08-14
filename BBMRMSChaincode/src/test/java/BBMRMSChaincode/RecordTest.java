@@ -1,5 +1,5 @@
 
-package JavaChainCode;
+package BBMRMSChaincode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -165,6 +165,17 @@ public final class RecordTest {
                 "Date_Time1",
                 "Test_Lab_Result1");
 
-        assertThat(Record.toString()).isEqualTo("Record@e04f6c53 [RecordID=Record1, color=Blue, size=20, owner=Guy, appraisedValue=100]");
+        assertThat(Record.toString()).isEqualTo("Record@e04f6c53"
+                + " [RecordID=Record1, "
+                + "PatientName=PatientName1, "
+                + "IC_Passport=IC_Passport1, "
+                + "Title=Title1, "
+                + "Diagnosis=Diagnosis1, "
+                + "Treatment=Treatment1, "
+                + "Prescriptions=Prescriptions1, "
+                + "DoctorName=DoctorName1, "
+                + "Date_Time=Date_Time1, "
+                + "Test_Lab_Result=Test_Lab_Result1 "
+                + "]");
     }
 }
