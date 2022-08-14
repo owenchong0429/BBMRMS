@@ -19,7 +19,7 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 import com.owlike.genson.Genson;
 
 @Contract(
-        name = "basic",
+        name = "RecordStore",
         info = @Info(
                 title = "BBMRMS",
                 description = "Chaincode to Store Medical Record",
@@ -50,6 +50,28 @@ public final class RecordStore implements ContractInterface {
                 "DoctorName1",
                 "Date_Time1",
                 "Test_Lab_Result1");
+        CreateRecord(ctx, 
+                "Record2", 
+                "PatientName2",
+                "IC_Passport2",
+                "Title2",
+                "Diagnosis2",
+                "Treatment2",
+                "Prescriptions2",
+                "DoctorName2",
+                "Date_Time2",
+                "Test_Lab_Result2");
+        CreateRecord(ctx, 
+                "Record3", 
+                "PatientName3",
+                "IC_Passport3",
+                "Title3",
+                "Diagnosis3",
+                "Treatment3",
+                "Prescriptions3",
+                "DoctorName3",
+                "Date_Time3",
+                "Test_Lab_Result3");
     }
 
     //Create New Record
