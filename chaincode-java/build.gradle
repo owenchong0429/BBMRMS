@@ -34,34 +34,34 @@ application {
     mainClass = 'org.hyperledger.fabric.contract.ContractRouter'
 }
 
-checkstyle {
-    toolVersion '8.21'
-    configFile file("config/checkstyle/checkstyle.xml")
-}
+// checkstyle {
+//     toolVersion '8.21'
+//     configFile file("config/checkstyle/checkstyle.xml")
+// }
 
-checkstyleMain {
-    source ='src/main/java'
-}
+// checkstyleMain {
+//     source ='src/main/java'
+// }
 
-checkstyleTest {
-    source ='src/test/java'
-}
+// checkstyleTest {
+//     source ='src/test/java'
+// }
 
-jacocoTestReport {
-    dependsOn test
-}
+// jacocoTestReport {
+//     dependsOn test
+// }
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.9
-            }
-        }
-    }
+// jacocoTestCoverageVerification {
+//     violationRules {
+//         rule {
+//             limit {
+//                 minimum = 0.9
+//             }
+//         }
+//     }
 
-    finalizedBy jacocoTestReport
-}
+//     finalizedBy jacocoTestReport
+// }
 
 test {
     useJUnitPlatform()
@@ -70,17 +70,17 @@ test {
     }
 }
 
-mainClassName = 'org.hyperledger.fabric.contract.ContractRouter'
+//mainClassName = 'org.hyperledger.fabric.contract.ContractRouter'
 
-shadowJar {
-    baseName = 'chaincode'
-    version = null
-    classifier = null
+// shadowJar {
+//     baseName = 'chaincode'
+//     version = null
+//     classifier = null
 
-    manifest {
-        attributes 'Main-Class': 'org.hyperledger.fabric.contract.ContractRouter'
-    }
-}
+//     manifest {
+//         attributes 'Main-Class': 'org.hyperledger.fabric.contract.ContractRouter'
+//     }
+// }
 
-check.dependsOn jacocoTestCoverageVerification
-installDist.dependsOn check
+// check.dependsOn jacocoTestCoverageVerification
+// installDist.dependsOn check
