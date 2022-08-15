@@ -51,7 +51,7 @@ public final class RecordStore implements ContractInterface {
 
     //Create New Record
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Record CreateRecord(final Context ctx, final String RecordID, final String PatientID, final String MedicalInfo, final String DoctorName, final String DateTime){
+    public Record CreateRecord(final Context ctx, final String RecordID, final String PatientID, final String MedicalInfo, final String DoctorName, final String DateTime) {
         ChaincodeStub stub = ctx.getStub();
 
         if (RecordExists(ctx, RecordID)) {
@@ -86,7 +86,7 @@ public final class RecordStore implements ContractInterface {
 
     //Update Record
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Record UpdateRecord(final Context ctx, final String RecordID, final String PatientID, final String MedicalInfo, final String DoctorName, final String DateTime){
+    public Record UpdateRecord(final Context ctx, final String RecordID, final String PatientID, final String MedicalInfo, final String DoctorName, final String DateTime) {
         ChaincodeStub stub = ctx.getStub();
 
         if (!RecordExists(ctx, RecordID)) {
