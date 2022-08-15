@@ -43,16 +43,15 @@ public final class RecordStore implements ContractInterface {
     public void InitLedger(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
 
-        CreateRecord(ctx, "Record1", "PatientName1", "IC_Passport1", "Title1", "Diagnosis1", "Treatment1", "Prescriptions1", "DoctorName1", "Date_Time1", "Test_Lab_Result1");
-        CreateRecord(ctx, "Record2", "PatientName2", "IC_Passport2", "Title2", "Diagnosis2", "Treatment2", "Prescriptions2", "DoctorName2", "Date_Time2", "Test_Lab_Result2");
-        CreateRecord(ctx, "Record3", "PatientName3", "IC_Passport3", "Title3", "Diagnosis3", "Treatment3", "Prescriptions3", "DoctorName3", "Date_Time3", "Test_Lab_Result3");
-        CreateRecord(ctx, "Record4", "PatientName4", "IC_Passport4", "Title4", "Diagnosis4", "Treatment4", "Prescriptions4", "DoctorName4", "Date_Time4", "Test_Lab_Result4");
+        CreateRecord(ctx, "Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+        CreateRecord(ctx, "Record2", "PatientID2", "MedicalInfo2", "DoctorName2", "DateTime2");
+        CreateRecord(ctx, "Record3", "PatientID3", "MedicalInfo3", "DoctorName3", "DateTime3");
+        CreateRecord(ctx, "Record4", "PatientID4", "MedicalInfo4", "DoctorName4", "DateTime4");
     }
 
     //Create New Record
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Record CreateRecord(final Context ctx, final String RecordID, final String PatientName, final String IC_Passport, final String Title,
-            final String Diagnosis, final String Treatment, final String Prescriptions, final String DoctorName, final String Date_Time, final String Test_Lab_Result) {
+    public Record CreateRecord(final Context ctx, final String RecordID, final String PatientID, final String MedicalInfo, final String DoctorName, final String DateTime){
         ChaincodeStub stub = ctx.getStub();
 
         if (RecordExists(ctx, RecordID)) {
@@ -61,7 +60,7 @@ public final class RecordStore implements ContractInterface {
             throw new ChaincodeException(errorMessage, RecordStoreErrors.RECORD_ALREADY_EXISTS.toString());
         }
 
-        Record record = new Record(RecordID, PatientName, IC_Passport, Title, Diagnosis, Treatment, Prescriptions, DoctorName, Date_Time, Test_Lab_Result);
+        Record record = new Record(RecordID, PatientID, MedicalInfo, DoctorName, DateTime);
         //Use Genson to convert the Record into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(record);
         stub.putStringState(RecordID, sortedJson);
@@ -81,14 +80,13 @@ public final class RecordStore implements ContractInterface {
             throw new ChaincodeException(errorMessage, RecordStoreErrors.RECORD_NOT_FOUND.toString());
         }
 
-        Record Record = genson.deserialize(RecordJSON, Record.class);
-        return Record;
+        Record record = genson.deserialize(RecordJSON, Record.class);
+        return record;
     }
 
     //Update Record
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Record UpdateRecord(final Context ctx, final String RecordID, final String PatientName, final String IC_Passport, final String Title,
-            final String Diagnosis, final String Treatment, final String Prescriptions, final String DoctorName, final String Date_Time, final String Test_Lab_Result) {
+    public Record UpdateRecord(final Context ctx, final String RecordID, final String PatientID, final String MedicalInfo, final String DoctorName, final String DateTime){
         ChaincodeStub stub = ctx.getStub();
 
         if (!RecordExists(ctx, RecordID)) {
@@ -97,7 +95,7 @@ public final class RecordStore implements ContractInterface {
             throw new ChaincodeException(errorMessage, RecordStoreErrors.RECORD_NOT_FOUND.toString());
         }
 
-        Record newRecord = new Record(RecordID, PatientName, IC_Passport, Title, Diagnosis, Treatment, Prescriptions, DoctorName, Date_Time, Test_Lab_Result);
+        Record newRecord = new Record(RecordID, PatientID, MedicalInfo, DoctorName, DateTime);
         //Use Genson to convert the Record into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(newRecord);
         stub.putStringState(RecordID, sortedJson);

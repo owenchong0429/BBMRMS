@@ -16,95 +16,48 @@ public final class Record {
     private final String RecordID;
 
     @Property()
-    private final String PatientName;
+    private final String PatientID;
     
     @Property()
-    private final String IC_Passport;
-    
-    @Property()
-    private final String Title;
-    
-    @Property()
-    private final String Diagnosis;
-    
-    @Property()
-    private final String Treatment;
-    
-    @Property()
-    private final String Prescriptions;
+    private final String MedicalInfo;
     
     @Property()
     private final String DoctorName;
     
     @Property()
-    private final String Date_Time;
-    
-    @Property()
-    private final String Test_Lab_Result;
+    private final String DateTime;
 
     public String getRecordID() {
         return RecordID;
     }
 
-    public String getPatientName() {
-        return PatientName;
+    public String getPatientID() {
+        return PatientID;
     }
 
-    public String getIC_Passport() {
-        return IC_Passport;
-    }
-
-    public String getTitle() {
-        return Title;
-    }
-
-    public String getDiagnosis() {
-        return Diagnosis;
-    }
-
-    public String getTreatment() {
-        return Treatment;
-    }
-
-    public String getPrescriptions() {
-        return Prescriptions;
+    public String getMedicalInfo() {
+        return MedicalInfo;
     }
 
     public String getDoctorName() {
         return DoctorName;
     }
 
-    public String getDate_Time() {
-        return Date_Time;
+    public String getDateTime() {
+        return DateTime;
     }
-
-    public String getTest_Lab_Result() {
-        return Test_Lab_Result;
-    }
-    
-    
 
     public Record(
             @JsonProperty("RecordID") final String RecordID, 
-            @JsonProperty("PatientName") final String PatientName,
-            @JsonProperty("IC_Passport") final String IC_Passport, 
-            @JsonProperty("Title") final String Title,
-            @JsonProperty("Diagnosis") final String Diagnosis,
-            @JsonProperty("Treatment") final String Treatment,
-            @JsonProperty("Prescriptions") final String Prescriptions,
+            @JsonProperty("PatientID") final String PatientID,
+            @JsonProperty("MedicalInfo") final String MedicalInfo, 
             @JsonProperty("DoctorName") final String DoctorName,
-            @JsonProperty("Date_Time") final String Date_Time,
-            @JsonProperty("Test_Lab_Result") final String Test_Lab_Result) {
+            @JsonProperty("DateTime") final String DateTime) {
         this.RecordID = RecordID;
-        this.PatientName = PatientName;
-        this.IC_Passport = IC_Passport;
-        this.Title = Title;
-        this.Diagnosis = Diagnosis;
-        this.Treatment = Treatment;
-        this.Prescriptions = Prescriptions;
+        this.PatientID = PatientID;
+        this.MedicalInfo = MedicalInfo;
         this.DoctorName = DoctorName;
-        this.Date_Time = Date_Time;
-        this.Test_Lab_Result = Test_Lab_Result;
+        this.DateTime = DateTime;
     }
 
     @Override
@@ -120,29 +73,23 @@ public final class Record {
         Record other = (Record) obj;
 
         return Objects.deepEquals(
-                new String[] {getRecordID(), getPatientName(), getIC_Passport(), getTitle(), getDiagnosis(), getTreatment(), getPrescriptions(), getDoctorName(), getDate_Time(), getTest_Lab_Result()},
-                new String[] {other.getRecordID(), other.getPatientName(),other.getIC_Passport(), other.getTitle(), other.getDiagnosis(), other.getTreatment(), other.getPrescriptions(), other.getDoctorName(), other.getDate_Time(), other.getTest_Lab_Result()});
+                new String[] {getRecordID(), getPatientID(), getMedicalInfo(), getDoctorName(), getDateTime()},
+                new String[] {other.getRecordID(), other.getPatientID(), other.getMedicalInfo(), other.getDoctorName(), other.getDateTime()});
     }
     
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRecordID(), getPatientName(), getIC_Passport(), getTitle(), getDiagnosis(), getTreatment(), getPrescriptions(), getDoctorName(), getDate_Time(), getTest_Lab_Result());
+        return Objects.hash(getRecordID(), getPatientID(), getMedicalInfo(), getDoctorName(), getDateTime());
     }
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + 
-                " [RecordID=" + RecordID 
-                + ", PatientName=" + PatientName
-                + ", IC_Passport=" + IC_Passport
-                + ", Title=" + Title 
-                + ", Diagnosis=" + Diagnosis
-                + ", Treatment=" + Treatment
-                + ", Prescriptions=" + Prescriptions
+        return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + " [RecordID=" + RecordID 
+                + ", PatientID=" + PatientID
+                + ", MedicalInfo=" + MedicalInfo
                 + ", Doctorname=" + DoctorName
-                + ", Date_Time=" + Date_Time
-                + ", Test_Lab_Result=" + Test_Lab_Result
+                + ", DateTime=" + DateTime
                 + "]";
     }
 }
