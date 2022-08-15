@@ -144,9 +144,9 @@ public final class RecordStoreTest {
         contract.InitLedger(ctx);
 
         InOrder inOrder = inOrder(stub);
-        inOrder.verify(stub).putStringState("Record1", "{\"RecordID\":\"Record1\",\"PatientID\":\"MockPatientID1\",\"MedicalInfo\":\"MockMedicalInfo1\",\"DoctorName\":\"MockDoctorName1\",\"DateTime\":\"MockDateTime1\"}");
-        inOrder.verify(stub).putStringState("Record2", "{\"RecordID\":\"Record2\",\"PatientID\":\"MockPatientID2\",\"MedicalInfo\":\"MockMedicalInfo2\",\"DoctorName\":\"MockDoctorName2\",\"DateTime\":\"MockDateTime2\"}");
-        inOrder.verify(stub).putStringState("Record3", "{\"RecordID\":\"Record3\",\"PatientID\":\"MockPatientID3\",\"MedicalInfo\":\"MockMedicalInfo3\",\"DoctorName\":\"MockDoctorName3\",\"DateTime\":\"MockDateTime3\"}");
+        inOrder.verify(stub).putStringState("Record1", "{\"DateTime\":\"MockDateTime1\",\"RecordID\":\"Record1\",\"PatientID\":\"MockPatientID1\",\"DoctorName\":\"MockDoctorName1\",\"MedicalInfo\":\"MockMedicalInfo1\"}");
+        inOrder.verify(stub).putStringState("Record2", "{\"DateTime\":\"MockDateTime2\",\"RecordID\":\"Record2\",\"PatientID\":\"MockPatientID2\",\"DoctorName\":\"MockDoctorName2\",\"MedicalInfo\":\"MockMedicalInfo2\"}");
+        inOrder.verify(stub).putStringState("Record3", "{\"DateTime\":\"MockDateTime3\",\"RecordID\":\"Record3\",\"PatientID\":\"MockPatientID3\",\"DoctorName\":\"MockDoctorName3\",\"MedicalInfo\":\"MockMedicalInfo3\"}");
 
     }
 
@@ -195,9 +195,9 @@ public final class RecordStoreTest {
 
         String Records = contract.GetAllRecords(ctx);
 
-        assertThat(Records).isEqualTo("[{\"RecordID\":\"Record1\",\"PatientID\":\"MockPatientID1\",\"MedicalInfo\":\"MockMedicalInfo1\",\"DoctorName\":\"MockDoctorName1\",\"DateTime\":\"MockDateTime1\"},"
-                + "{ \"RecordID\":\"Record2\",\"PatientID\":\"MockPatientID2\",\"MedicalInfo\":\"MockMedicalInfo2\",\"DoctorName\":\"MockDoctorName2\",\"DateTime\":\"MockDateTime2\"},"
-                + "{ \"RecordID\":\"Record3\",\"PatientID\":\"MockPatientID3\",\"MedicalInfo\":\"MockMedicalInfo3\",\"DoctorName\":\"MockDoctorName3\",\"DateTime\":\"MockDateTime3\"}]");
+        assertThat(Records).isEqualTo("[{\"DateTime\":\"MockDateTime1\",\"RecordID\":\"Record1\",\"PatientID\":\"MockPatientID1\",\"DoctorName\":\"MockDoctorName1\",\"MedicalInfo\":\"MockMedicalInfo1\"},"
+                + "{ \"DateTime\":\"MockDateTime2\",\"RecordID\":\"Record2\",\"PatientID\":\"MockPatientID2\",\"DoctorName\":\"MockDoctorName2\",\"MedicalInfo\":\"MockMedicalInfo2\"},"
+                + "{ \"DateTime\":\"MockDateTime3\",\"RecordID\":\"Record3\",\"PatientID\":\"MockPatientID3\",\"DoctorName\":\"MockDoctorName3\",\"MedicalInfo\":\"MockMedicalInfo3\"}]");
 
     }
 
