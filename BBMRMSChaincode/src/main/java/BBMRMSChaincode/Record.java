@@ -120,46 +120,14 @@ public final class Record {
         Record other = (Record) obj;
 
         return Objects.deepEquals(
-                new String[] {
-                    getRecordID(),
-                    getPatientName(),
-                    getIC_Passport(), 
-                    getTitle(), 
-                    getDiagnosis(), 
-                    getTreatment(), 
-                    getPrescriptions(), 
-                    getDoctorName(), 
-                    getDate_Time(), 
-                    getTest_Lab_Result()
-                },
-                new String[] {
-                    other.getRecordID(), 
-                    other.getPatientName(),
-                    other.getIC_Passport(), 
-                    other.getTitle(), 
-                    other.getDiagnosis(), 
-                    other.getTreatment(), 
-                    other.getPrescriptions(), 
-                    other.getDoctorName(), 
-                    other.getDate_Time(), 
-                    other.getTest_Lab_Result()
-                });
+                new String[] {getRecordID(), getPatientName(), getIC_Passport(), getTitle(), getDiagnosis(), getTreatment(), getPrescriptions(), getDoctorName(), getDate_Time(), getTest_Lab_Result()},
+                new String[] {other.getRecordID(), other.getPatientName(),other.getIC_Passport(), other.getTitle(), other.getDiagnosis(), other.getTreatment(), other.getPrescriptions(), other.getDoctorName(), other.getDate_Time(), other.getTest_Lab_Result()});
     }
+    
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-                getRecordID(), 
-                getPatientName(),
-                getIC_Passport(), 
-                getTitle(), 
-                getDiagnosis(), 
-                getTreatment(), 
-                getPrescriptions(), 
-                getDoctorName(), 
-                getDate_Time(), 
-                getTest_Lab_Result()
-        );
+        return Objects.hash(getRecordID(), getPatientName(), getIC_Passport(), getTitle(), getDiagnosis(), getTreatment(), getPrescriptions(), getDoctorName(), getDate_Time(), getTest_Lab_Result());
     }
 
     @Override

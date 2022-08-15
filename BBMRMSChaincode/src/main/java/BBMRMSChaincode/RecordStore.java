@@ -17,11 +17,15 @@ import org.hyperledger.fabric.shim.ledger.KeyValue;
 import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 import com.owlike.genson.Genson;
+import org.hyperledger.fabric.contract.annotation.License;
 
 @Contract(
         name = "basic",
         info = @Info(
                 title = "BBMRMS",
+                license = @License(
+                        name = "Apache 2.0 License",
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.html"),
                 description = "Chaincode to Store Medical Record",
                 version = "0.0.1-SNAPSHOT"))
 @Default
@@ -39,50 +43,10 @@ public final class RecordStore implements ContractInterface {
     public void InitLedger(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
 
-        CreateRecord(ctx, 
-                "Record1", 
-                "PatientName1",
-                "IC_Passport1",
-                "Title1",
-                "Diagnosis1",
-                "Treatment1",
-                "Prescriptions1",
-                "DoctorName1",
-                "Date_Time1",
-                "Test_Lab_Result1");
-        CreateRecord(ctx, 
-                "Record2", 
-                "PatientName2",
-                "IC_Passport2",
-                "Title2",
-                "Diagnosis2",
-                "Treatment2",
-                "Prescriptions2",
-                "DoctorName2",
-                "Date_Time2",
-                "Test_Lab_Result2");
-        CreateRecord(ctx, 
-                "Record3", 
-                "PatientName3",
-                "IC_Passport3",
-                "Title3",
-                "Diagnosis3",
-                "Treatment3",
-                "Prescriptions3",
-                "DoctorName3",
-                "Date_Time3",
-                "Test_Lab_Result3");
-        CreateRecord(ctx, 
-                "Record4", 
-                "PatientName4",
-                "IC_Passport4",
-                "Title4",
-                "Diagnosis4",
-                "Treatment4",
-                "Prescriptions4",
-                "DoctorName4",
-                "Date_Time4",
-                "Test_Lab_Result4");
+        CreateRecord(ctx, "Record1", "PatientName1", "IC_Passport1", "Title1", "Diagnosis1", "Treatment1", "Prescriptions1", "DoctorName1", "Date_Time1", "Test_Lab_Result1");
+        CreateRecord(ctx, "Record2", "PatientName2", "IC_Passport2", "Title2", "Diagnosis2", "Treatment2", "Prescriptions2", "DoctorName2", "Date_Time2", "Test_Lab_Result2");
+        CreateRecord(ctx, "Record3", "PatientName3", "IC_Passport3", "Title3", "Diagnosis3", "Treatment3", "Prescriptions3", "DoctorName3", "Date_Time3", "Test_Lab_Result3");
+        CreateRecord(ctx, "Record4", "PatientName4", "IC_Passport4", "Title4", "Diagnosis4", "Treatment4", "Prescriptions4", "DoctorName4", "Date_Time4", "Test_Lab_Result4");
     }
 
     //Create New Record

@@ -61,40 +61,13 @@ public final class RecordStoreTest {
             RecordList = new ArrayList<KeyValue>();
 
             RecordList.add(new MockKeyValue("Record1",
-                    "{ \"RecordID\": \"Record1\", "
-                            + "\"PatientName\": \"MockPatientName1\", "
-                            + "\"IC_Passport\": \"MockIC_Passport1\", "
-                            + "\"Title\": \"MockTitle1\", "
-                            + "\"Diagnosis\": \"MockDiagnosis1\", "
-                            + "\"Treatment\": \"MockDTreatment1\", "
-                            + "\"Prescriptions\": \"MockPrescriptions1\", "
-                            + "\"DoctorName\": \"MockDoctorName1\", "
-                            + "\"Date_Time\": MockDate_Time1, "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result1\"}"));
+                    "{ \"RecordID\": \"Record1\", \"PatientName\": \"MockPatientName1\", \"IC_Passport\": \"MockIC_Passport1\", \"Title\": \"MockTitle1\", \"Diagnosis\": \"MockDiagnosis1\", \"Treatment\": \"MockDTreatment1\", \"Prescriptions\": \"MockPrescriptions1\", \"DoctorName\": \"MockDoctorName1\", \"Date_Time\": MockDate_Time1, \"Test_Lab_Result\": \"MockTest_Lab_Result1\"}"));
             
             RecordList.add(new MockKeyValue("Record2",
-                    "{ \"RecordID\": \"Record2\", "
-                            + "\"PatientName\": \"MockPatientName2\", "
-                            + "\"IC_Passport\": \"MockIC_Passport2\", "
-                            + "\"Title\": \"MockTitle2\", "
-                            + "\"Diagnosis\": \"MockDiagnosis2\", "
-                            + "\"Treatment\": \"MockDTreatment2\", "
-                            + "\"Prescriptions\": \"MockPrescriptions2\", "
-                            + "\"DoctorName\": \"MockDoctorName2\", "
-                            + "\"Date_Time\": \"MockDate_Time2\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result2\"}"));
+                    "{ \"RecordID\": \"Record2\", \"PatientName\": \"MockPatientName2\", \"IC_Passport\": \"MockIC_Passport2\", \"Title\": \"MockTitle2\", \"Diagnosis\": \"MockDiagnosis2\", \"Treatment\": \"MockDTreatment2\", \"Prescriptions\": \"MockPrescriptions2\", \"DoctorName\": \"MockDoctorName2\", \"Date_Time\": \"MockDate_Time2\", \"Test_Lab_Result\": \"MockTest_Lab_Result2\"}"));
             
             RecordList.add(new MockKeyValue("Record3",
-                    "{ \"RecordID\": \"Record3\", "
-                            + "\"PatientName\": \"MockPatientName3\", "
-                            + "\"IC_Passport\": \"MockIC_Passport3\", "
-                            + "\"Title\": \"MockTitle3\", "
-                            + "\"Diagnosis\": \"MockDiagnosis3\", "
-                            + "\"Treatment\": \"MockDTreatment3\", "
-                            + "\"Prescriptions\": \"MockPrescriptions3\", "
-                            + "\"DoctorName\": \"MockDoctorName3\", "
-                            + "\"Date_Time\": \"MockDate_Time3\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result3\"}"));
+                    "{ \"RecordID\": \"Record3\", \"PatientName\": \"MockPatientName3\", \"IC_Passport\": \"MockIC_Passport3\", \"Title\": \"MockTitle3\", \"Diagnosis\": \"MockDiagnosis3\", \"Treatment\": \"MockDTreatment3\", \"Prescriptions\": \"MockPrescriptions3\", \"DoctorName\": \"MockDoctorName3\", \"Date_Time\": \"MockDate_Time3\", \"Test_Lab_Result\": \"MockTest_Lab_Result3\"}"));
             
         }
 
@@ -136,30 +109,11 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("{ \"RecordID\": \"Record1\", "
-                            + "\"PatientName\": \"MockPatientName1\", "
-                            + "\"IC_Passport\": \"MockIC_Passport1\", "
-                            + "\"Title\": \"MockTitle1\", "
-                            + "\"Diagnosis\": \"MockDiagnosis1\", "
-                            + "\"Treatment\": \"MockDTreatment1\", "
-                            + "\"Prescriptions\": \"MockPrescriptions1\", "
-                            + "\"DoctorName\": \"MockDoctorName1\", "
-                            + "\"Date_Time\": \"MockDate_Time1\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
+                    .thenReturn("{ \"RecordID\": \"Record1\", \"PatientName\": \"MockPatientName1\", \"IC_Passport\": \"MockIC_Passport1\", \"Title\": \"MockTitle1\",  \"Diagnosis\": \"MockDiagnosis1\", \"Treatment\": \"MockDTreatment1\", \"Prescriptions\": \"MockPrescriptions1\", \"DoctorName\": \"MockDoctorName1\", \"Date_Time\": \"MockDate_Time1\", \"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
 
             Record Record = contract.ReadRecord(ctx, "Record1");
 
-            assertThat(Record).isEqualTo(new Record(
-                    "Record1", 
-                    "MockPatientName1",
-                    "MockIC_Passport1",
-                    "MockTitle1", 
-                    "MockDiagnosis1",
-                    "MockDTreatment1",
-                    "MockPrescriptions1", 
-                    "MockDoctorName1", 
-                    "MockDate_Time1",
-                    "MockTest_Lab_Result1"));
+            assertThat(Record).isEqualTo(new Record("Record1", "MockPatientName1","MockIC_Passport1","MockTitle1", "MockDiagnosis1","MockDTreatment1","MockPrescriptions1", "MockDoctorName1", "MockDate_Time1","MockTest_Lab_Result1"));
         }
 
         @Test
@@ -191,40 +145,13 @@ public final class RecordStoreTest {
 
         InOrder inOrder = inOrder(stub);
         inOrder.verify(stub).putStringState("Record1",
-                    "{ \"RecordID\": \"Record1\", "
-                            + "\"PatientName\": \"MockPatientName1\", "
-                            + "\"IC_Passport\": \"MockIC_Passport1\", "
-                            + "\"Title\": \"MockTitle1\", "
-                            + "\"Diagnosis\": \"MockDiagnosis1\", "
-                            + "\"Treatment\": \"MockDTreatment1\", "
-                            + "\"Prescriptions\": \"MockPrescriptions1\", "
-                            + "\"DoctorName\": \"MockDoctorName1\", "
-                            + "\"Date_Time\": \"MockDate_Time1\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
+                    "{ \"RecordID\": \"Record1\", \"PatientName\": \"MockPatientName1\", \"IC_Passport\": \"MockIC_Passport1\", \"Title\": \"MockTitle1\", \"Diagnosis\": \"MockDiagnosis1\", \"Treatment\": \"MockDTreatment1\", \"Prescriptions\": \"MockPrescriptions1\", \"DoctorName\": \"MockDoctorName1\", \"Date_Time\": \"MockDate_Time1\", \"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
         
         inOrder.verify(stub).putStringState("Record2",
-                    "{ \"RecordID\": \"Record2\", "
-                            + "\"PatientName\": \"MockPatientName2\", "
-                            + "\"IC_Passport\": \"MockIC_Passport2\", "
-                            + "\"Title\": \"MockTitle2\", "
-                            + "\"Diagnosis\": \"MockDiagnosis2\", "
-                            + "\"Treatment\": \"MockDTreatment2\", "
-                            + "\"Prescriptions\": \"MockPrescriptions2\", "
-                            + "\"DoctorName\": \"MockDoctorName2\", "
-                            + "\"Date_Time\": \"MockDate_Time2\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result2\"}");
+                    "{ \"RecordID\": \"Record2\", \"PatientName\": \"MockPatientName2\", \"IC_Passport\": \"MockIC_Passport2\", \"Title\": \"MockTitle2\", \"Diagnosis\": \"MockDiagnosis2\", \"Treatment\": \"MockDTreatment2\", \"Prescriptions\": \"MockPrescriptions2\", \"DoctorName\": \"MockDoctorName2\", \"Date_Time\": \"MockDate_Time2\", \"Test_Lab_Result\": \"MockTest_Lab_Result2\"}");
         
         inOrder.verify(stub).putStringState("Record3",
-                    "{ \"RecordID\": \"Record3\", "
-                            + "\"PatientName\": \"MockPatientName3\", "
-                            + "\"IC_Passport\": \"MockIC_Passport3\", "
-                            + "\"Title\": \"MockTitle3\", "
-                            + "\"Diagnosis\": \"MockDiagnosis3\", "
-                            + "\"Treatment\": \"MockDTreatment3\", "
-                            + "\"Prescriptions\": \"MockPrescriptions3\", "
-                            + "\"DoctorName\": \"MockDoctorName3\", "
-                            + "\"Date_Time\": \"MockDate_Time3\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result3\"}");
+                    "{ \"RecordID\": \"Record3\", \"PatientName\": \"MockPatientName3\", \"IC_Passport\": \"MockIC_Passport3\", \"Title\": \"MockTitle3\", \"Diagnosis\": \"MockDiagnosis3\", \"Treatment\": \"MockDTreatment3\", \"Prescriptions\": \"MockPrescriptions3\", \"DoctorName\": \"MockDoctorName3\", \"Date_Time\": \"MockDate_Time3\", \"Test_Lab_Result\": \"MockTest_Lab_Result3\"}");
 
     }
 
@@ -238,29 +165,10 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("{ \"RecordID\": \"Record1\", "
-                            + "\"PatientName\": \"MockPatientName1\", "
-                            + "\"IC_Passport\": \"MockIC_Passport1\", "
-                            + "\"Title\": \"MockTitle1\", "
-                            + "\"Diagnosis\": \"MockDiagnosis1\", "
-                            + "\"Treatment\": \"MockDTreatment1\", "
-                            + "\"Prescriptions\": \"MockPrescriptions1\", "
-                            + "\"DoctorName\": \"MockDoctorName1\", "
-                            + "\"Date_Time\": \"MockDate_Time1\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
+                    .thenReturn("{ \"RecordID\": \"Record1\", \"PatientName\": \"MockPatientName1\", \"IC_Passport\": \"MockIC_Passport1\", \"Title\": \"MockTitle1\", \"Diagnosis\": \"MockDiagnosis1\", \"Treatment\": \"MockDTreatment1\", \"Prescriptions\": \"MockPrescriptions1\", \"DoctorName\": \"MockDoctorName1\", \"Date_Time\": \"MockDate_Time1\", \"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
 
             Throwable thrown = catchThrowable(() -> {
-                contract.CreateRecord(ctx, 
-                    "Record1", 
-                    "MockPatientName1",
-                    "MockIC_Passport1",
-                    "MockTitle1", 
-                    "MockDiagnosis1",
-                    "MockDTreatment1",
-                    "MockPrescriptions1", 
-                    "MockDoctorName1", 
-                    "MockDate_Time1",
-                    "MockTest_Lab_Result1");
+                contract.CreateRecord(ctx, "Record1", "MockPatientName1","MockIC_Passport1","MockTitle1", "MockDiagnosis1","MockDTreatment1","MockPrescriptions1", "MockDoctorName1", "MockDate_Time1","MockTest_Lab_Result1");
             });
 
             assertThat(thrown).isInstanceOf(ChaincodeException.class).hasNoCause()
@@ -276,29 +184,9 @@ public final class RecordStoreTest {
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1")).thenReturn("");
 
-            Record Record = contract.CreateRecord(ctx,
-                    "Record1", 
-                    "MockPatientName1",
-                    "MockIC_Passport1",
-                    "MockTitle1", 
-                    "MockDiagnosis1",
-                    "MockDTreatment1",
-                    "MockPrescriptions1", 
-                    "MockDoctorName1", 
-                    "MockDate_Time1",
-                    "MockTest_Lab_Result1");
+            Record Record = contract.CreateRecord(ctx,"Record1", "MockPatientName1","MockIC_Passport1","MockTitle1", "MockDiagnosis1","MockDTreatment1","MockPrescriptions1", "MockDoctorName1", "MockDate_Time1","MockTest_Lab_Result1");
 
-            assertThat(Record).isEqualTo(new Record(
-                    "Record1", 
-                    "MockPatientName1",
-                    "MockIC_Passport1",
-                    "MockTitle1", 
-                    "MockDiagnosis1",
-                    "MockDTreatment1",
-                    "MockPrescriptions1", 
-                    "MockDoctorName1", 
-                    "MockDate_Time1",
-                    "MockTest_Lab_Result1"));
+            assertThat(Record).isEqualTo(new Record("Record1", "MockPatientName1","MockIC_Passport1","MockTitle1", "MockDiagnosis1","MockDTreatment1","MockPrescriptions1", "MockDoctorName1", "MockDate_Time1","MockTest_Lab_Result1"));
         }
     }
 
@@ -312,38 +200,9 @@ public final class RecordStoreTest {
 
         String Records = contract.GetAllRecords(ctx);
 
-        assertThat(Records).isEqualTo("[{\"RecordID\": \"Record1\", "
-                            + "\"PatientName\": \"MockPatientName1\", "
-                            + "\"IC_Passport\": \"MockIC_Passport1\", "
-                            + "\"Title\": \"MockTitle1\", "
-                            + "\"Diagnosis\": \"MockDiagnosis1\", "
-                            + "\"Treatment\": \"MockDTreatment1\", "
-                            + "\"Prescriptions\": \"MockPrescriptions1\", "
-                            + "\"DoctorName\": \"MockDoctorName1\", "
-                            + "\"Date_Time\": \"MockDate_Time1\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result1\"}"
-                +
-                    "{ \"RecordID\": \"Record2\", "
-                            + "\"PatientName\": \"MockPatientName2\", "
-                            + "\"IC_Passport\": \"MockIC_Passport2\", "
-                            + "\"Title\": \"MockTitle2\", "
-                            + "\"Diagnosis\": \"MockDiagnosis2\", "
-                            + "\"Treatment\": \"MockDTreatment2\", "
-                            + "\"Prescriptions\": \"MockPrescriptions2\", "
-                            + "\"DoctorName\": \"MockDoctorName2\", "
-                            + "\"Date_Time\": \"MockDate_Time2\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result2\"}"
-                +
-                    "{ \"RecordID\": \"Record3\", "
-                            + "\"PatientName\": \"MockPatientName3\", "
-                            + "\"IC_Passport\": \"MockIC_Passport3\", "
-                            + "\"Title\": \"MockTitle3\", "
-                            + "\"Diagnosis\": \"MockDiagnosis3\", "
-                            + "\"Treatment\": \"MockDTreatment3\", "
-                            + "\"Prescriptions\": \"MockPrescriptions3\", "
-                            + "\"DoctorName\": \"MockDoctorName3\", "
-                            + "\"Date_Time\": \"MockDate_Time3\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result3\"}]");
+        assertThat(Records).isEqualTo("[{\"RecordID\": \"Record1\", \"PatientName\": \"MockPatientName1\", \"IC_Passport\": \"MockIC_Passport1\", \"Title\": \"MockTitle1\", \"Diagnosis\": \"MockDiagnosis1\", \"Treatment\": \"MockDTreatment1\", \"Prescriptions\": \"MockPrescriptions1\", \"DoctorName\": \"MockDoctorName1\", \"Date_Time\": \"MockDate_Time1\", \"Test_Lab_Result\": \"MockTest_Lab_Result1\"},"
+                + "{ \"RecordID\": \"Record2\", \"PatientName\": \"MockPatientName2\", \"IC_Passport\": \"MockIC_Passport2\", \"Title\": \"MockTitle2\", \"Diagnosis\": \"MockDiagnosis2\", \"Treatment\": \"MockDTreatment2\", \"Prescriptions\": \"MockPrescriptions2\", \"DoctorName\": \"MockDoctorName2\", \"Date_Time\": \"MockDate_Time2\", \"Test_Lab_Result\": \"MockTest_Lab_Result2\"},"
+                + "{ \"RecordID\": \"Record3\", \"PatientName\": \"MockPatientName3\", \"IC_Passport\": \"MockIC_Passport3\", \"Title\": \"MockTitle3\", \"Diagnosis\": \"MockDiagnosis3\", \"Treatment\": \"MockDTreatment3\", \"Prescriptions\": \"MockPrescriptions3\", \"DoctorName\": \"MockDoctorName3\", \"Date_Time\": \"MockDate_Time3\", \"Test_Lab_Result\": \"MockTest_Lab_Result3\"}]");
 
     }
 
@@ -401,40 +260,11 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("{ \"RecordID\": \"Record1\", "
-                            + "\"PatientName\": \"MockPatientName1\", "
-                            + "\"IC_Passport\": \"MockIC_Passport1\", "
-                            + "\"Title\": \"MockTitle1\", "
-                            + "\"Diagnosis\": \"MockDiagnosis1\", "
-                            + "\"Treatment\": \"MockDTreatment1\", "
-                            + "\"Prescriptions\": \"MockPrescriptions1\", "
-                            + "\"DoctorName\": \"MockDoctorName1\", "
-                            + "\"Date_Time\": \"MockDate_Time1\", "
-                            + "\"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
+                    .thenReturn("{ \"RecordID\": \"Record1\", \"PatientName\": \"MockPatientName1\", \"IC_Passport\": \"MockIC_Passport1\", \"Title\": \"MockTitle1\", \"Diagnosis\": \"MockDiagnosis1\", \"Treatment\": \"MockDTreatment1\", \"Prescriptions\": \"MockPrescriptions1\", \"DoctorName\": \"MockDoctorName1\", \"Date_Time\": \"MockDate_Time1\", \"Test_Lab_Result\": \"MockTest_Lab_Result1\"}");
 
-            Record Record = contract.UpdateRecord(ctx, 
-                    "Record1", 
-                    "MockPatientName1",
-                    "MockIC_Passport1",
-                    "MockTitle1", 
-                    "MockDiagnosis1",
-                    "MockDTreatment1",
-                    "MockPrescriptions1", 
-                    "MockDoctorName1", 
-                    "MockDate_Time1",
-                    "MockTest_Lab_Result1");
+            Record Record = contract.UpdateRecord(ctx, "Record1", "MockPatientName1","MockIC_Passport1","MockTitle1", "MockDiagnosis1","MockDTreatment1","MockPrescriptions1", "MockDoctorName1", "MockDate_Time1","MockTest_Lab_Result1");
 
-            assertThat(Record).isEqualTo(new Record(
-                    "Record1", 
-                    "MockPatientName1",
-                    "MockIC_Passport1",
-                    "MockTitle1", 
-                    "MockDiagnosis1",
-                    "MockDTreatment1",
-                    "MockPrescriptions1", 
-                    "MockDoctorName1", 
-                    "MockDate_Time1",
-                    "MockTest_Lab_Result1"));
+            assertThat(Record).isEqualTo(new Record("Record1", "MockPatientName1","MockIC_Passport1","MockTitle1", "MockDiagnosis1","MockDTreatment1","MockPrescriptions1", "MockDoctorName1", "MockDate_Time1","MockTest_Lab_Result1"));
         }
 
 //        @Test

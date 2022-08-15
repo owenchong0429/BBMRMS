@@ -21,6 +21,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
     testImplementation 'org.assertj:assertj-core:3.11.1'
     testImplementation 'org.mockito:mockito-core:2.+'
+    testImplementation 'org.hyperledger.fabric-chaincode-java:fabric-chaincode-shim:2.4.1'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
@@ -31,15 +32,12 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'JavaChainCode.App'
+    mainClass = 'org.hyperledger.fabric.contract.ContractRouter'
 }
 
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
+checkstyle {
+    toolVersion '8.21'
+    configFile file("config/checkstyle/checkstyle.xml")
 }
 
 checkstyleMain {
@@ -64,6 +62,14 @@ jacocoTestCoverageVerification {
     }
 
     finalizedBy jacocoTestReport
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 mainClassName = 'org.hyperledger.fabric.contract.ContractRouter'
