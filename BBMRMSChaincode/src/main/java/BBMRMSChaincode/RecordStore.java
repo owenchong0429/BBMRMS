@@ -51,78 +51,78 @@ public final class RecordStore implements ContractInterface {
 
     //Create New Record
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Record CreateRecord(final Context ctx, final String RecordID, final String PatientID, final String MedicalInfo, final String DoctorName, final String DateTime) {
+    public Record CreateRecord(final Context ctx, final String recordID, final String patientID, final String medicalInfo, final String doctorName, final String dateTime) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (RecordExists(ctx, RecordID)) {
-            String errorMessage = String.format("Record %s already exists", RecordID);
+        if (RecordExists(ctx, recordID)) {
+            String errorMessage = String.format("Record %s already exists", recordID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, RecordStoreErrors.RECORD_ALREADY_EXISTS.toString());
         }
 
-        Record record = new Record(RecordID, PatientID, MedicalInfo, DoctorName, DateTime);
+        Record record = new Record(recordID, patientID, medicalInfo, doctorName, dateTime);
         //Use Genson to convert the Record into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(record);
-        stub.putStringState(RecordID, sortedJson);
+        stub.putStringState(recordID, sortedJson);
 
         return record;
     }
 
     //Retrieve and read Record
     @Transaction(intent = Transaction.TYPE.EVALUATE)
-    public Record ReadRecord(final Context ctx, final String RecordID) {
+    public Record ReadRecord(final Context ctx, final String recordID) {
         ChaincodeStub stub = ctx.getStub();
-        String RecordJSON = stub.getStringState(RecordID);
+        String recordJSON = stub.getStringState(recordID);
 
-        if (RecordJSON == null || RecordJSON.isEmpty()) {
-            String errorMessage = String.format("Record %s does not exist", RecordID);
+        if (recordJSON == null || recordJSON.isEmpty()) {
+            String errorMessage = String.format("Record %s does not exist", recordID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, RecordStoreErrors.RECORD_NOT_FOUND.toString());
         }
 
-        Record record = genson.deserialize(RecordJSON, Record.class);
+        Record record = genson.deserialize(recordJSON, Record.class);
         return record;
     }
 
     //Update Record
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Record UpdateRecord(final Context ctx, final String RecordID, final String PatientID, final String MedicalInfo, final String DoctorName, final String DateTime) {
+    public Record UpdateRecord(final Context ctx, final String recordID, final String patientID, final String medicalInfo, final String doctorName, final String dateTime) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (!RecordExists(ctx, RecordID)) {
-            String errorMessage = String.format("Record %s does not exist", RecordID);
+        if (!RecordExists(ctx, recordID)) {
+            String errorMessage = String.format("Record %s does not exist", recordID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, RecordStoreErrors.RECORD_NOT_FOUND.toString());
         }
 
-        Record newRecord = new Record(RecordID, PatientID, MedicalInfo, DoctorName, DateTime);
+        Record newRecord = new Record(recordID, patientID, medicalInfo, doctorName, dateTime);
         //Use Genson to convert the Record into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(newRecord);
-        stub.putStringState(RecordID, sortedJson);
+        stub.putStringState(recordID, sortedJson);
         return newRecord;
     }
 
     //Delete Record
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public void DeleteRecord(final Context ctx, final String RecordID) {
+    public void DeleteRecord(final Context ctx, final String recordID) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (!RecordExists(ctx, RecordID)) {
-            String errorMessage = String.format("Record %s does not exist", RecordID);
+        if (!RecordExists(ctx, recordID)) {
+            String errorMessage = String.format("Record %s does not exist", recordID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, RecordStoreErrors.RECORD_NOT_FOUND.toString());
         }
 
-        stub.delState(RecordID);
+        stub.delState(recordID);
     }
 
     //Check whether record exists or not
     @Transaction(intent = Transaction.TYPE.EVALUATE)
-    public boolean RecordExists(final Context ctx, final String RecordID) {
+    public boolean RecordExists(final Context ctx, final String recordID) {
         ChaincodeStub stub = ctx.getStub();
-        String RecordJSON = stub.getStringState(RecordID);
+        String recordJSON = stub.getStringState(recordID);
 
-        return (RecordJSON != null && !RecordJSON.isEmpty());
+        return (recordJSON != null && !recordJSON.isEmpty());
     }
 
     //Get all record
@@ -135,9 +135,9 @@ public final class RecordStore implements ContractInterface {
         QueryResultsIterator<KeyValue> results = stub.getStateByRange("", "");
 
         for (KeyValue result: results) {
-            Record Record = genson.deserialize(result.getStringValue(), Record.class);
-            System.out.println(Record);
-            queryResults.add(Record);
+            Record record = genson.deserialize(result.getStringValue(), Record.class);
+            System.out.println(record);
+            queryResults.add(record);
         }
 
         final String response = genson.serialize(queryResults);

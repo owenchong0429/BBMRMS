@@ -13,51 +13,51 @@ import com.owlike.genson.annotation.JsonProperty;
 public final class Record {
 
     @Property()
-    private final String RecordID;
+    private final String recordID;
 
     @Property()
-    private final String PatientID;
+    private final String patientID;
     
     @Property()
-    private final String MedicalInfo;
+    private final String medicalInfo;
+  
+    @Property()
+    private final String doctorName;
     
     @Property()
-    private final String DoctorName;
-    
-    @Property()
-    private final String DateTime;
+    private final String dateTime;
 
     public String getRecordID() {
-        return RecordID;
+        return recordID;
     }
 
     public String getPatientID() {
-        return PatientID;
+        return patientID;
     }
 
     public String getMedicalInfo() {
-        return MedicalInfo;
+        return medicalInfo;
     }
 
     public String getDoctorName() {
-        return DoctorName;
+        return doctorName;
     }
 
     public String getDateTime() {
-        return DateTime;
+        return dateTime;
     }
-
+    
     public Record(
-            @JsonProperty("RecordID") final String RecordID, 
-            @JsonProperty("PatientID") final String PatientID,
-            @JsonProperty("MedicalInfo") final String MedicalInfo, 
-            @JsonProperty("DoctorName") final String DoctorName,
-            @JsonProperty("DateTime") final String DateTime) {
-        this.RecordID = RecordID;
-        this.PatientID = PatientID;
-        this.MedicalInfo = MedicalInfo;
-        this.DoctorName = DoctorName;
-        this.DateTime = DateTime;
+            @JsonProperty("RecordID") final String recordID, 
+            @JsonProperty("PatientID") final String patientID,
+            @JsonProperty("MedicalInfo") final String medicalInfo, 
+            @JsonProperty("DoctorName") final String doctorName,
+            @JsonProperty("DateTime") final String dateTime) {
+        this.recordID = recordID;
+        this.patientID = patientID;
+        this.medicalInfo = medicalInfo;
+        this.doctorName = doctorName;
+        this.dateTime = dateTime;
     }
 
     @Override
@@ -85,11 +85,11 @@ public final class Record {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + " [RecordID=" + RecordID 
-                + ", PatientID=" + PatientID
-                + ", MedicalInfo=" + MedicalInfo
-                + ", Doctorname=" + DoctorName
-                + ", DateTime=" + DateTime
+        return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + " [RecordID=" + recordID 
+                + ", PatientID=" + patientID
+                + ", MedicalInfo=" + medicalInfo
+                + ", Doctorname=" + doctorName
+                + ", DateTime=" + dateTime
                 + "]";
     }
 }

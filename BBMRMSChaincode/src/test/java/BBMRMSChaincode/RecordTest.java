@@ -20,38 +20,38 @@ public final class RecordTest {
 
         @Test
         public void isSymmetric() {
-            Record RecordA = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
-            Record RecordB = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+            Record recordA = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+            Record recordB = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
 
-            assertThat(RecordA).isEqualTo(RecordB);
-            assertThat(RecordB).isEqualTo(RecordA);
+            assertThat(recordA).isEqualTo(recordB);
+            assertThat(recordB).isEqualTo(recordA);
         }
 
         @Test
         public void isTransitive() {
-            Record RecordA = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
-            Record RecordB = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
-            Record RecordC = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+            Record recordA = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+            Record recordB = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+            Record recordC = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
 
-            assertThat(RecordA).isEqualTo(RecordB);
-            assertThat(RecordB).isEqualTo(RecordC);
-            assertThat(RecordA).isEqualTo(RecordC);
+            assertThat(recordA).isEqualTo(recordB);
+            assertThat(recordB).isEqualTo(recordC);
+            assertThat(recordA).isEqualTo(recordC);
         }
 
         @Test
         public void handlesInequality() {
-            Record RecordA = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
-            Record RecordB = new Record("Record1", "PatientID2", "MedicalInfo2", "DoctorName2", "DateTime2");
+            Record recordA = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+            Record recordB = new Record("Record1", "PatientID2", "MedicalInfo2", "DoctorName2", "DateTime2");
 
-            assertThat(RecordA).isNotEqualTo(RecordB);
+            assertThat(recordA).isNotEqualTo(recordB);
         }
 
         @Test
         public void handlesOtherObjects() {
-            Record RecordA = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
-            String RecordB = "not a Record";
+            Record recordA = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+            String recordB = "not a record";
 
-            assertThat(RecordA).isNotEqualTo(RecordB);
+            assertThat(recordA).isNotEqualTo(recordB);
         }
 
         @Test
@@ -62,10 +62,10 @@ public final class RecordTest {
         }
     }
 
-    // @Test
-    // public void toStringIdentifiesRecord() {
-    //     Record record = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
+    @Test
+    public void toStringIdentifiesRecord() {
+        Record record = new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
 
-    //     assertThat(record.toString()).isEqualTo("Record@e04f6c53 [RecordID=Record1, PatientID=PatientID1, MedicalInfo=MedicalInfo1, DoctorName=DoctorName1, DateTime=DateTime1]");
-    // }
+        assertThat(record.toString()).isEqualTo("Record@e04f6c53 [recordID=Record1, patientID=PatientID1, medicalInfo=MedicalInfo1, doctorName=DoctorName1, dateTime=DateTime1]");
+    }
 }
