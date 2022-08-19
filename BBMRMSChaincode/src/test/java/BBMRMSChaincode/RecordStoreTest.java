@@ -61,13 +61,13 @@ public final class RecordStoreTest {
             recordList = new ArrayList<KeyValue>();
 
             recordList.add(new MockKeyValue("Record1",
-                    "{ \"recordID\": \"Record1\", \"patientID\": \"MockPatientID1\", \"medicalInfo\": \"MockMedicalInfo1\", \"doctorName\": \"MockDoctorName1\", \"dateTime\": \"MockDateTime1\" }"));
+                    "{ \"recordID\": \"Record1\", \"patientID\": \"PatientID1\", \"medicalInfo\": \"MedicalInfo1\", \"doctorName\": \"DoctorName1\", \"dateTime\": \"DateTime1\" }"));
             
             recordList.add(new MockKeyValue("Record2",
-                    "{ \"recordID\": \"Record2\", \"patientID\": \"MockPatientID2\", \"medicalInfo\": \"MockMedicalInfo2\", \"doctorName\": \"MockDoctorName2\", \"dateTime\": \"MockDae_Time2\" }"));
+                    "{ \"recordID\": \"Record2\", \"patientID\": \"PatientID2\", \"medicalInfo\": \"MedicalInfo2\", \"doctorName\": \"DoctorName2\", \"dateTime\": \"DateTime2\" }"));
             
             recordList.add(new MockKeyValue("Record3",
-                    "{ \"recordID\": \"Record3\", \"patientID\": \"MockPatientID3\", \"medicalInfo\": \"MockMedicalInfo3\", \"doctorName\": \"MockDoctorName3\", \"dateTime\": \"MockDae_Time3\" }"));
+                    "{ \"recordID\": \"Record3\", \"patientID\": \"PatientID3\", \"medicalInfo\": \"MedicalInfo3\", \"doctorName\": \"DoctorName3\", \"dateTime\": \"DateTime3\" }"));
             
         }
 
@@ -109,11 +109,11 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("{ \"recordID\": \"Record1\", \"patientID\": \"MockPatientID1\", \"medicalInfo\": \"MockMedicalInfo1\", \"doctorName\": \"MockDoctorName1\", \"dateTime\": \"MockDateTime1\"}");
+                    .thenReturn("{ \"recordID\": \"Record1\", \"patientID\": \"PatientID1\", \"medicalInfo\": \"MedicalInfo1\", \"doctorName\": \"DoctorName1\", \"dateTime\": \"DateTime1\"}");
 
             Record Record = contract.ReadRecord(ctx, "Record1");
 
-            assertThat(Record).isEqualTo(new Record("Record1", "MockPatientID1", "MockMedicalInfo1", "MockDoctorName1", "MockDateTime1"));
+            assertThat(Record).isEqualTo(new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1"));
         }
 
         @Test
@@ -144,10 +144,10 @@ public final class RecordStoreTest {
         contract.InitLedger(ctx);
 
         InOrder inOrder = inOrder(stub);
-        inOrder.verify(stub).putStringState("Record1", "{\"dateTime\":\"MockDateTime1\",\"recordID\":\"Record1\",\"patientID\":\"MockPatientID1\",\"doctorName\":\"MockDoctorName1\",\"medicalInfo\":\"MockMedicalInfo1\"}");
-        inOrder.verify(stub).putStringState("Record2", "{\"dateTime\":\"MockDateTime2\",\"recordID\":\"Record2\",\"patientID\":\"MockPatientID2\",\"doctorName\":\"MockDoctorName2\",\"medicalInfo\":\"MockMedicalInfo2\"}");
-        inOrder.verify(stub).putStringState("Record3", "{\"dateTime\":\"MockDateTime3\",\"recordID\":\"Record3\",\"patientID\":\"MockPatientID3\",\"doctorName\":\"MockDoctorName3\",\"medicalInfo\":\"MockMedicalInfo3\"}");
-
+        inOrder.verify(stub).putStringState("Record1", "{\"dateTime\":\"DateTime1\",\"recordID\":\"Record1\",\"patientID\":\"PatientID1\",\"doctorName\":\"DoctorName1\",\"medicalInfo\":\"MedicalInfo1\"}");
+        inOrder.verify(stub).putStringState("Record2", "{\"dateTime\":\"DateTime2\",\"recordID\":\"Record2\",\"patientID\":\"PatientID2\",\"doctorName\":\"DoctorName2\",\"medicalInfo\":\"MedicalInfo2\"}");
+        inOrder.verify(stub).putStringState("Record3", "{\"dateTime\":\"DateTime3\",\"recordID\":\"Record3\",\"patientID\":\"PatientID3\",\"doctorName\":\"DoctorName3\",\"medicalInfo\":\"MedicalInfo3\"}");
+        
     }
 
     @Nested
@@ -160,10 +160,10 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("{ \"recordID\": \"Record1\", \"patientID\": \"MockPatientID1\", \"medicalInfo\": \"MockMedicalInfo1\", \"doctorName\": \"MockDoctorName1\", \"dateTime\": \"MockDateTime1\"}");
+                    .thenReturn("{ \"recordID\": \"Record1\", \"patientID\": \"PatientID1\", \"medicalInfo\": \"MedicalInfo1\", \"doctorName\": \"DoctorName1\", \"dateTime\": \"DateTime1\"}");
 
             Throwable thrown = catchThrowable(() -> {
-                contract.CreateRecord(ctx, "Record1", "MockPatientID1", "MockMedicalInfo1", "MockDoctorName1", "MockDateTime1");
+                contract.CreateRecord(ctx, "Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
             });
 
             assertThat(thrown).isInstanceOf(ChaincodeException.class).hasNoCause()
@@ -179,9 +179,9 @@ public final class RecordStoreTest {
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1")).thenReturn("");
 
-            Record Record = contract.CreateRecord(ctx, "Record1", "MockPatientID1", "MockMedicalInfo1", "MockDoctorName1", "MockDateTime1");
+            Record Record = contract.CreateRecord(ctx, "Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
 
-            assertThat(Record).isEqualTo(new Record("Record1", "MockPatientID1", "MockMedicalInfo1", "MockDoctorName1", "MockDateTime1"));
+            assertThat(Record).isEqualTo(new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1"));
         }
     }
 
@@ -195,9 +195,9 @@ public final class RecordStoreTest {
 
         String Records = contract.GetAllRecords(ctx);
 
-        assertThat(Records).isEqualTo("[{\"dateTime\":\"MockDateTime1\",\"recordID\":\"Record1\",\"patientID\":\"MockPatientID1\",\"doctorName\":\"MockDoctorName1\",\"medicalInfo\":\"MockMedicalInfo1\"},"
-                + "{ \"dateTime\":\"MockDateTime2\",\"recordID\":\"Record2\",\"patientID\":\"MockPatientID2\",\"doctorName\":\"MockDoctorName2\",\"medicalInfo\":\"MockMedicalInfo2\"},"
-                + "{ \"dateTime\":\"MockDateTime3\",\"recordID\":\"Record3\",\"patientID\":\"MockPatientID3\",\"doctorName\":\"MockDoctorName3\",\"medicalInfo\":\"MockMedicalInfo3\"}]");
+        assertThat(Records).isEqualTo("[{\"dateTime\":\"DateTime1\",\"recordID\":\"Record1\",\"patientID\":\"PatientID1\",\"doctorName\":\"DoctorName1\",\"medicalInfo\":\"MedicalInfo1\"},"
+                + "{ \"dateTime\":\"DateTime2\",\"recordID\":\"Record2\",\"patientID\":\"PatientID2\",\"doctorName\":\"DoctorName2\",\"medicalInfo\":\"MedicalInfo2\"},"
+                + "{ \"dateTime\":\"DateTime3\",\"recordID\":\"Record3\",\"patientID\":\"PatientID3\",\"doctorName\":\"DoctorName3\",\"medicalInfo\":\"MedicalInfo3\"}]");
 
     }
 
@@ -255,11 +255,11 @@ public final class RecordStoreTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("Record1"))
-                    .thenReturn("{ \"recordID\": \"Record1\", \"patientID\": \"MockPatientID1\", \"medicalInfo\": \"MockMedicalInfo1\", \"doctorName\": \"MockDoctorName1\", \"dateTime\": \"MockDateTime1\"}");
+                    .thenReturn("{ \"recordID\": \"Record1\", \"patientID\": \"PatientID1\", \"medicalInfo\": \"MedicalInfo1\", \"doctorName\": \"DoctorName1\", \"dateTime\": \"DateTime1\"}");
 
-            Record Record = contract.UpdateRecord(ctx, "Record1", "MockPatientID1", "MockMedicalInfo1", "MockDoctorName1", "MockDateTime1");
+            Record Record = contract.UpdateRecord(ctx, "Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1");
 
-            assertThat(Record).isEqualTo(new Record("Record1", "MockPatientID1", "MockMedicalInfo1", "MockDoctorName1", "MockDateTime1"));
+            assertThat(Record).isEqualTo(new Record("Record1", "PatientID1", "MedicalInfo1", "DoctorName1", "DateTime1"));
         }
 
 //        @Test
